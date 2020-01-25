@@ -179,38 +179,36 @@ class PaymentDetail extends Component {
 									light
 									style={{ width: '90%', margin: 'auto', marginTop: '3%', marginBottom: '3%' }}
 								/>
-								<form>
-									<Container maxWidth="md" style={{ width: '80%' }}>
-										<Grid item xs={12} style={{ marginTop: '10px' }}>
-											<Typography variant="h5" style={{ fontWeight: 'bold' }}>
-												Prove Payment
+								<Container maxWidth="md" style={{ width: '80%' }}>
+									<Grid item xs={12} style={{ marginTop: '10px' }}>
+										<Typography variant="h5" style={{ fontWeight: 'bold' }}>
+											Prove Payment
 										</Typography>
+									</Grid>
+									<Grid container>
+										<Grid item xs={6} style={{ marginTop: '10px' }}>
+											<img src={this.state.attachment} style={{ width: '100%' }} />
+											<TextField
+												id="standard-basic"
+												label="Upload Bukti Pembayaran"
+												value={this.state.attachment}
+												onChange={this.onChangeAttachment}
+												required
+												style={{ width: '100%' }}
+											/>
 										</Grid>
-										<Grid container>
-											<Grid item xs={6} style={{ marginTop: '10px' }}>
-												<img src={this.state.attachment} style={{ width: '100%' }} />
-												<TextField
-													id="standard-basic"
-													label="Upload Bukti Pembayaran"
-													value={this.state.attachment}
-													onChange={this.onChangeAttachment}
-													required
-													style={{ width: '100%' }}
-												/>
-											</Grid>
-											<Grid item xs={6} style={{ marginTop: '10px', textAlign: 'end' }}>
-												<Button
-													large
-													variant="contained"
-													style={{ backgroundColor: '#ff5252', color: '#fff' }}
-													onClick={this.onSubmit}
-												>
-													Confirm
+										<Grid item xs={6} style={{ marginTop: '10px', textAlign: 'end' }}>
+											<Button
+												large
+												variant="contained"
+												style={{ backgroundColor: '#ff5252', color: '#fff' }}
+												onClick={this.onSubmit}
+											>
+												Confirm
 											</Button>
-											</Grid>
 										</Grid>
-									</Container>
-								</form>
+									</Grid>
+								</Container>
 							</div>
 						</div>
 					</Container>
