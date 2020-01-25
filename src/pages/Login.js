@@ -45,7 +45,7 @@ export default class Login extends Component {
 
 		login(user).then(() => {
 			if (localStorage.getItem('token')) {
-				window.location = '/home';
+				window.location = '/';
 			} else {
 				this.setState({
 					username: '',
@@ -61,7 +61,7 @@ export default class Login extends Component {
 	render() {
 		const checkToken = localStorage.getItem('token');
 		if (checkToken) {
-			window.location = '/home';
+			window.location = '/';
 		} else {
 			return (
 				<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#ff5252' }}>

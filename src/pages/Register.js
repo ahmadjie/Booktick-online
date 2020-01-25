@@ -71,7 +71,7 @@ export default class Register extends Component {
 
 		register(user).then((response) => {
 			if (response.data.message === "success") {
-				window.location = '/home';
+				window.location = '/';
 			} else if (response.data === "email already") {
 				this.setState({
 					email: '',
@@ -95,7 +95,7 @@ export default class Register extends Component {
 	render() {
 		const checkToken = localStorage.getItem('token');
 		if (checkToken) {
-			window.location = '/home';
+			window.location = '/';
 		} else {
 			return (
 				<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#ff5252' }}>
