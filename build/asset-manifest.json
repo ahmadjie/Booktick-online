@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Booktick-Production/static/css/main.d01dcbfb.chunk.css",
+    "main.js": "/Booktick-Production/static/js/main.0ac72b23.chunk.js",
+    "main.js.map": "/Booktick-Production/static/js/main.0ac72b23.chunk.js.map",
+    "runtime-main.js": "/Booktick-Production/static/js/runtime-main.1fb4d68e.js",
+    "runtime-main.js.map": "/Booktick-Production/static/js/runtime-main.1fb4d68e.js.map",
+    "static/js/2.eed5e3d8.chunk.js": "/Booktick-Production/static/js/2.eed5e3d8.chunk.js",
+    "static/js/2.eed5e3d8.chunk.js.map": "/Booktick-Production/static/js/2.eed5e3d8.chunk.js.map",
+    "index.html": "/Booktick-Production/index.html",
+    "precache-manifest.f1caaa0f7e28bdec9b471569a41d2fc7.js": "/Booktick-Production/precache-manifest.f1caaa0f7e28bdec9b471569a41d2fc7.js",
+    "service-worker.js": "/Booktick-Production/service-worker.js",
+    "static/css/main.d01dcbfb.chunk.css.map": "/Booktick-Production/static/css/main.d01dcbfb.chunk.css.map",
+    "static/js/2.eed5e3d8.chunk.js.LICENSE": "/Booktick-Production/static/js/2.eed5e3d8.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1fb4d68e.js",
+    "static/js/2.eed5e3d8.chunk.js",
+    "static/css/main.d01dcbfb.chunk.css",
+    "static/js/main.0ac72b23.chunk.js"
+  ]
+}
