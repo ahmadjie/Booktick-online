@@ -175,7 +175,7 @@ export const confirmPayment = (confirmStatus) => {
 		.then(() => {
 			window.location = '/myticket';
 		})
-		.catch(() => {
-			alert('Something Error');
+		.catch((err) => {
+			console.log(err);
 		});
 };
