@@ -97,7 +97,7 @@ class PaymentDetail extends Component {
 															fontWeight: 'bold'
 														}}
 													>
-														{this.state.buyer.id}
+														{this.state.order.id}
 													</Typography>
 												</Grid>
 												<Grid item xs={3}>
