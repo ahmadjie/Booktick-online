@@ -22,7 +22,7 @@ class EventsBySearch extends Component {
   componentDidMount() {
     const { match } = this.props;
     axios
-      .get(`https://booktick.herokuapp.com/api/v1/event/?title=${match.params.keyword}`)
+      .get(`https://booktick.herokuapp.com/api/v1/events/?title=${match.params.keyword}`)
       .then(res => {
         if (!res.data.length) {
           this.setState({ isNotFound: true });
