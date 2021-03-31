@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button, Typography, Avatar } from '@material-ui/core';
+import { Grid, Button, Typography, Avatar, CircularProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,8 +8,10 @@ class ProfileComponent extends Component {
 		const { data, isLoading, eror } = this.props.user;
 		if (isLoading) {
 			return (
-				<div>
-					<h1>Mohon Tunggu...</h1>
+				<div style={{ display: 'flex', minHeight: '100vh' }}>
+					<div style={{ margin: 'auto' }}>
+						<CircularProgress color="secondary" />
+					</div>
 				</div>
 			);
 		}

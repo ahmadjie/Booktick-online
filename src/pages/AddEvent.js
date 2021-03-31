@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import { connect } from "react-redux";
 import { getCategories } from "../_actions/categories";
 //material - ui
-import { Grid, Button, TextField, MenuItem } from "@material-ui/core";
+import { Grid, Button, TextField, MenuItem, CircularProgress } from "@material-ui/core";
 //config
 import { addEvent } from "../config/api";
 
@@ -81,8 +81,10 @@ class AddEvent extends Component {
     } else {
       if (isLoading) {
         return (
-          <div>
-            <h1>ini loading</h1>
+          <div style={{ display: 'flex', minHeight: '100vh' }}>
+            <div style={{ margin: 'auto' }}>
+              <CircularProgress color="secondary" />
+            </div>
           </div>
         );
       }

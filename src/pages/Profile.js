@@ -5,7 +5,7 @@ import ProfileComponent from '../components/Profile';
 import EditProfile from '../components/EditProfile';
 import Footer from '../components/Footer';
 //material ui
-import { Grid, CardMedia, Button, Typography, Card, CardActionArea, CardContent } from '@material-ui/core';
+import { Grid, CardMedia, Button, Typography, Card, CardActionArea, CardContent, CircularProgress } from '@material-ui/core';
 //otherss
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { getFavorite } from '../_actions/favorite'
@@ -26,8 +26,10 @@ class Profile extends Component {
 
 			if (isLoading) {
 				return (
-					<div>
-						<h1>Mohon Tunggu...</h1>
+					<div style={{ display: 'flex', minHeight: '100vh' }}>
+						<div style={{ margin: 'auto' }}>
+							<CircularProgress color="secondary" />
+						</div>
 					</div>
 				);
 			}

@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from 'react-router-dom';
 import { CardMedia, Button } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -20,33 +21,58 @@ export class Event extends Component {
 	}
 
 	handleLikeClick = (id) => {
-        const favoriteEvent = {
-            eventId: id
-        };
-        favorite(favoriteEvent).then(res => {
-            if (res === undefined) {
-                window.location = "/login"
-            } else if (res.data === "you already favorite this events") {
-                alert("you already favorite this events")
-            } else {
-                window.location.reload()
-            }
-        });
-    };
+		const favoriteEvent = {
+			eventId: id
+		};
+		favorite(favoriteEvent).then(res => {
+			if (res === undefined) {
+				window.location = "/login"
+			} else if (res.data === "you already favorite this events") {
+				alert("you already favorite this events")
+			} else {
+				window.location.reload()
+			}
+		});
+	};
 
 	render() {
 		const { data, isLoading, error } = this.props.events;
 		const { favorites } = this.props.favorite;
 
-        let idEventFavorite = []
+		let idEventFavorite = []
 
-		if(favorites.length > 0){
-        favorites.map((favorite) => {
-            idEventFavorite.push(favorite.eventId)
-        })
-	}
+		if (favorites.length > 0) {
+			favorites.map((favorite) => {
+				idEventFavorite.push(favorite.eventId)
+				return null
+			})
+		}
 		if (isLoading) {
-			return <div>Mohon Tunggu</div>;
+			const loadingCard = [1, 2, 3]
+			return (
+				<>
+					<h1 style={{ marginTop: '2%', color: '#ff5252' }}>Event</h1>
+					<Grid container style={{ marginTop: '2%' }}>
+						{loadingCard.map((item) => {
+							return (
+								<Grid item xs={4} style={{ marginBottom: '2%' }}>
+									<div style={{ margin: '5px' }}>
+										<Card>
+											<CardActionArea>
+												<Skeleton variant="rect" height={250} />
+												<CardContent>
+													<Skeleton width="60%" />
+													<Skeleton />
+												</CardContent>
+											</CardActionArea>
+										</Card>
+									</div>
+								</Grid>
+							);
+						})}
+					</Grid>
+				</>
+			)
 		}
 
 		if (error) {
@@ -137,9 +163,9 @@ const mapDispatchToProps = (dispatch) => {
 		getEvents: () => {
 			dispatch(getEvents());
 		},
-        getFavorite: () => {
-            dispatch(getFavorite());
-        }
+		getFavorite: () => {
+			dispatch(getFavorite());
+		}
 		// userSetFavoriteEvent: (eventId) => {
 		// 	dispatch(userSetFavoriteEvent(eventId));
 		// }

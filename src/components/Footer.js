@@ -8,7 +8,7 @@ const FooterSecondary = () => (
 			color: 'white',
 			padding: '40px 60px',
 			position: 'static',
-			marginTop: '5%',
+			marginTop: '33vh',
 		}}
 	>
 		<div>

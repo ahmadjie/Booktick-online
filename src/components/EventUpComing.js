@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { Link } from 'react-router-dom';
 import { CardMedia, Button } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -14,132 +15,157 @@ import { favorite } from '../config/api';
 
 export class EventUpComing extends Component {
 
-    componentDidMount() {
-        this.props.getEventsUpComing();
-        this.props.getFavorite();
-    }
+	componentDidMount() {
+		this.props.getEventsUpComing();
+		this.props.getFavorite();
+	}
 
-    handleLikeClick = (id) => {
-        const favoriteEvent = {
-            eventId: id
-        };
-        favorite(favoriteEvent).then(res => {
-            if (res === undefined) {
-                window.location = "/login"
-            } else if (res.data === "you already favorite this events") {
-                alert("you already favorite this events")
-            } else {
-                window.location.reload()
-            }
-        });
-    };
+	handleLikeClick = (id) => {
+		const favoriteEvent = {
+			eventId: id
+		};
+		favorite(favoriteEvent).then(res => {
+			if (res === undefined) {
+				window.location = "/login"
+			} else if (res.data === "you already favorite this events") {
+				alert("you already favorite this events")
+			} else {
+				window.location.reload()
+			}
+		});
+	};
 
-    render() {
-        const { data, isLoading, error } = this.props.events;
-        const { favorites } = this.props.favorite;
+	render() {
+		const { data, isLoading, error } = this.props.events;
+		const { favorites } = this.props.favorite;
 
-        let idEventFavorite = []
-        if (favorites.length > 0) {
-            favorites.map((favorite) => {
-                idEventFavorite.push(favorite.eventId)
-            })
-        }
-        if (isLoading) {
-            return <div>Mohon Tunggu</div>;
-        }
+		let idEventFavorite = []
+		if (favorites.length > 0) {
+			favorites.map((favorite) => {
+				idEventFavorite.push(favorite.eventId)
+				return null
+			})
+		}
+		if (isLoading) {
+			const loadingCard = [1, 2, 3]
+			return (
+				<>
+					<h1 style={{ marginTop: '2%', color: '#ff5252' }}>Up Coming</h1>
+					<Grid container style={{ marginTop: '2%' }}>
+						{loadingCard.map((item) => {
+							return (
+								<Grid item xs={4} style={{ marginBottom: '2%' }}>
+									<div style={{ margin: '5px' }}>
+										<Card>
+											<CardActionArea>
+												<Skeleton variant="rect" height={250} />
+												<CardContent>
+													<Skeleton width="60%" />
+													<Skeleton />
+												</CardContent>
+											</CardActionArea>
+										</Card>
+									</div>
+								</Grid>
+							);
+						})}
+					</Grid>
+				</>
+			)
+		}
 
-        if (error) {
-            return (
-                <div>
-                    <h1>eror</h1>
-                </div>
-            );
-        }
+		if (error) {
+			return (
+				<div>
+					<h1>eror</h1>
+				</div>
+			);
+		}
 
-        return (
-            <div style={{ marginTop: '3%' }}>
-                <h1 style={{ marginTop: '2%', color: '#ff5252' }}>Up Coming</h1>
-                <Grid container style={{ marginTop: '2%' }}>
-                    {
-                        data.map((item) => {
-                            return (
-                                <Grid item xs={4} style={{ marginBottom: '2%' }}>
-                                    <div style={{ margin: '5px' }}>
-                                        <Card>
-                                            <CardActionArea>
-                                                <Button
-                                                    disabled
-                                                    style={{
-                                                        position: 'absolute',
-                                                        top: '10px',
-                                                        right: '10px',
-                                                        backgroundColor: '#ff5252',
-                                                        padding: '10px'
-                                                    }}
-                                                >
-                                                    <Typography
-                                                        variant="h6"
-                                                        color="textSecondary"
-                                                        style={{
-                                                            color: 'white',
-                                                            fontSize: '14px'
-                                                        }}
-                                                    >
-                                                        Rp. {item.price}
-                                                    </Typography>
-                                                </Button>
-                                                <CardMedia component="img" height="250px" image={item.image} />
-                                                <CardContent>
-                                                    <Grid container style={{ display: 'flex' }}>
-                                                        <Grid item xs={10}>
-                                                            <Link
-                                                                to={`/event/${item.id}`}
-                                                                style={{ textDecoration: 'none', color: 'black' }}
-                                                            >
-                                                                <Typography gutterBottom variant="h5" component="h2">
-                                                                    {item.title.substring(0, 30)}
-                                                                </Typography>
-                                                            </Link>
-                                                        </Grid>
-                                                        <Grid item xs={1} style={{ marginTop: '2%' }}>
-                                                            <FavoriteIcon
-                                                                style={{ color: idEventFavorite.includes(item.id) ? 'salmon' : 'grey' }}
-                                                                onClick={() => this.handleLikeClick(item.id)}
-                                                            />
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Typography variant="body2" color="textSecondary" component="p">
-                                                        {item.description.substring(0, 60)}
-                                                    </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
-                                    </div>
-                                </Grid>
-                            );
-                        })}
-                </Grid>
-            </div>
-        );
-    }
+		return (
+			<div style={{ marginTop: '3%' }}>
+				<h1 style={{ marginTop: '2%', color: '#ff5252' }}>Up Coming</h1>
+				<Grid container style={{ marginTop: '2%' }}>
+					{
+						data.map((item) => {
+							return (
+								<Grid item xs={4} style={{ marginBottom: '2%' }}>
+									<div style={{ margin: '5px' }}>
+										<Card>
+											<CardActionArea>
+												<Button
+													disabled
+													style={{
+														position: 'absolute',
+														top: '10px',
+														right: '10px',
+														backgroundColor: '#ff5252',
+														padding: '10px'
+													}}
+												>
+													<Typography
+														variant="h6"
+														color="textSecondary"
+														style={{
+															color: 'white',
+															fontSize: '14px'
+														}}
+													>
+														Rp. {item.price}
+													</Typography>
+												</Button>
+												<CardMedia component="img" height="250px" image={item.image} />
+												<CardContent>
+													<Grid container style={{ display: 'flex' }}>
+														<Grid item xs={10}>
+															<Link
+																to={`/event/${item.id}`}
+																style={{ textDecoration: 'none', color: 'black' }}
+															>
+																<Typography gutterBottom variant="h5" component="h2">
+																	{item.title.substring(0, 30)}
+																</Typography>
+															</Link>
+														</Grid>
+														<Grid item xs={1} style={{ marginTop: '2%' }}>
+															<FavoriteIcon
+																style={{ color: idEventFavorite.includes(item.id) ? 'salmon' : 'grey' }}
+																onClick={() => this.handleLikeClick(item.id)}
+															/>
+														</Grid>
+													</Grid>
+													<Typography variant="body2" color="textSecondary" component="p">
+														{item.description.substring(0, 60)}
+													</Typography>
+												</CardContent>
+											</CardActionArea>
+										</Card>
+									</div>
+								</Grid>
+							);
+						})}
+				</Grid>
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {
-        events: state.eventsUpComing,
-        favorite: state.favorite
-    };
+	return {
+		events: state.eventsUpComing,
+		favorite: state.favorite
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        getEventsUpComing: () => {
-            dispatch(getEventsUpComing());
-        },
-        getFavorite: () => {
-            dispatch(getFavorite());
-        }
-    };
+	return {
+		getEventsUpComing: () => {
+			dispatch(getEventsUpComing());
+		},
+		getFavorite: () => {
+			dispatch(getFavorite());
+		}
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventUpComing);

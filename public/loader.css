@@ -1,0 +1,43 @@
+.wrapPreLoader {
+  display:flex;
+  min-height: 95vh;
+  background-color: #fbe9e7;
+}
+
+.loading-container {
+  align-items: center;
+  justify-content: center;
+  animation: rotate 3s linear infinite;
+  height: 50px;
+  transform-origin: bottom center;
+  flex-direction: column;
+  margin: auto;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.circle {
+  animation: grow 1.5s linear infinite;
+  background-color: #ff5252;
+  border-radius: 50%;
+  display: inline-block;
+  margin: -10px;
+  height: 40px;
+  width: 40px;
+  transform: scale(0);
+}
+
+.circle:nth-of-type(2) {
+  animation-delay: .75s;
+  background-color: #fbe9e7;
+}
+
+@keyframes grow {
+  50% {
+    transform: scale(1);
+  }
+}

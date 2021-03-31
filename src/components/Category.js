@@ -15,9 +15,21 @@ class Category extends Component {
 
 		if (isLoading) {
 			return (
-				<div>
-					<h1>ini loading</h1>
-				</div>
+				<>
+					<h1 style={{ color: '#ff5252' }}> Category </h1>
+					<Button
+						variant="contained"
+						style={{
+							backgroundColor: '#ff5252',
+							width: '200px',
+							fontSize: '12px',
+							color: 'white'
+						}}
+						size="small"
+					>
+						<h3>Loading</h3>
+					</Button>
+				</>
 			);
 		}
 		if (error) {
